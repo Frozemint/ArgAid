@@ -2,51 +2,36 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
+function Decode(props){
+	return <textarea placeholder="Result..." value={props.string}></textarea>;
+}
+
 class TextDecode extends React.Component{
 	constructor(props){
 		super(props);
 		this.state ={
 			string: "test",
 		};
+		this.handleInput = this.handleInput.bind(this);
 	}
-	fillLHSTextfield(i){
-		return <LHSField value={i}/>;
-	}
-	fillRHSTextfield(i){
-		return <RHSField value={i}/>;
+	handleInput(event){
+		this.setState({string: event.target.value});
+		//alert(event.target.value);
 	}
 	render(){
+		const string = this.state.string;
 		return (
 			<div>
 			<h1>ARG Aid</h1>
-			{this.fillLHSTextfield(this.state.string)}
-			{this.fillRHSTextfield(this.state.string)}
+			<textarea placeholder="String to decode..." onChange={this.handleInput}>
+			{this.state.string}
+			</textarea>
+			<Decode string={this.state.string}/>
 			</div>
 			);
 	}
 
 }
-
-class LHSField extends React.Component{
-	render(){
-		return (
-			<textarea placeholder="String to decode...">
-			{this.props.value}
-			</textarea>
-			);
-	}
-}
-
-class RHSField extends React.Component{
-	render(){
-		return (
-			<textarea placeholder="Result...">
-			{this.props.value}
-			</textarea>
-			);
-	}
-}
-
 
 
 ReactDOM.render(<TextDecode/>, document.getElementById('root'));
