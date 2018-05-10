@@ -6,7 +6,11 @@ class TextDecode extends React.Component{
 
 	render(){
 		return (
+			<div>
 			<h1>ARG Aid</h1>
+			<textarea/>
+			<textarea/>
+			</div>
 			);
 	}
 }
