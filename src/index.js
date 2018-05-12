@@ -6,29 +6,29 @@ function Decode(props){
 	return <textarea placeholder="Result..." value={props.string}></textarea>;
 }
 
-function BaseToBase(i,x){
-
-}
-
 class TextDecode extends React.Component{
 	constructor(props){
 		super(props);
 		this.state = {
 			string: "",
-			subjectBase: 10,
-			resultBase: 2
+			subjectBase: 2,
+			resultBase: 10
 		};
 		this.handleInput = this.handleInput.bind(this);
-		this.setState = this.setState.bind(this);
 	}
 	getSubjectBase = (event) => { //subject is the string to decode
 		this.setState({
 			subjectBase: event.target.value,
 		});
 	}
+	getResultBase = (event) => {
+		this.setState({
+			resultBase: event.target.value,
+		});
+	}
 	handleInput = (event) => {
 		this.setState({
-			string: event.target.value,
+			string: parseInt(event.target.value, this.state.subjectBase).toString(this.state.resultBase),
 		});
 	}
 	render(){
@@ -37,12 +37,12 @@ class TextDecode extends React.Component{
 			<h1>ARG Aid</h1>
 			<br></br>
 			<div id="LHSDiv">
-				<textarea placeholder="String to decode..." onChange={this.handleInput}>
+				<textarea placeholder="Number to decode..." onChange={this.handleInput}>
 				{this.state.string}
 				</textarea>
 				<br></br>
-				<select 
-					value={this.state.selectValue}
+				Interpret number As: <select 
+					value={this.state.subjectBase}
 					onChange={this.getSubjectBase}
 					>
 					<option value="2">Base 2 (Binary)</option>
@@ -53,9 +53,9 @@ class TextDecode extends React.Component{
 			<div id="RHSDiv">
 				<Decode string={this.state.string}/>
 				<br></br>
-				<select 
-					value={this.state.selectValue}
-					onChange={this.getSubjectBase}
+				and convert to: <select
+					value="10"
+					onChange={this.getResultBase}
 					>
 					<option value="2">Base 2 (Binary)</option>
 					<option value="8">Base 8 (Octary)</option>
