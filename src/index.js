@@ -9,7 +9,6 @@ class TextDecode extends React.Component{
 		this.state = {
 			string: "",
 		}
-		this.handleInput = this.handleInput.bind(this);
 	}
 	handleInput = (event) =>{
 		this.setState({
@@ -19,7 +18,8 @@ class TextDecode extends React.Component{
 	render(){
 		return (
 			<div>
-				<TextBoxes onChange={this.handleInput} string={this.state.string}/>
+				<TextBoxes name="Input" onChange={this.handleInput} string={this.state.string}/>
+				<TextBoxes name="Output" onChange={this.handleInput} string={this.state.string}/>
 			</div>
 			);
 	}
@@ -29,7 +29,7 @@ class TextDecode extends React.Component{
 class TextBoxes extends React.Component{
 	render(){
 		return (
-			<textarea placeholder="String to Decode" onChange={this.props.onChange}>{this.props.string}</textarea>
+			<textarea name={this.props.name} placeholder={this.props.name + "..."} onChange={this.props.onChange}>{this.props.string}</textarea>
 			);
 	}
 }
