@@ -1,6 +1,6 @@
 function processString(inputBase, outputBase, stringToDecode){
 	if (stringToDecode.length === 0) {return "";}
-	
+
 	switch (inputBase){
 		case "2":
 		case "8":
@@ -12,9 +12,20 @@ function processString(inputBase, outputBase, stringToDecode){
 				return "The input is not a valid base " + inputBase + " number.";
 			}
 			return result;
+		case "64":
+			try {
+				return atob(stringToDecode);
+			} catch (e) {
+				return "The input is not a valid base 64 number.";
+			}
+		case "String":
+			document.getElementsByName("OutputDropdown").disabled = true;
+			return btoa(stringToDecode);
 		default:
-			return "err";
+			return "An unknown error occurred.";
 	}
 }
+
+
 
 exports.processString = processString;
