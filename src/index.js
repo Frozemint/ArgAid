@@ -7,27 +7,36 @@ class TextDecode extends React.Component{
 	constructor(props){
 		super(props);
 		this.state = {
-			string: "",
+			input: "",
+			result: "",
 			inputBase: 2,
 			outputBase: 10
 		}
+		this.handleInput = this.handleInput.bind(this);
 	}
 	handleInput = (event) =>{
+		var result = parseInt(event.target.value, this.state.inputBase).toString(this.state.outputBase);
+		if (isNaN(result)){
+			result = "Your input is not a valid base " + this.state.inputBase + " number.";
+		}
 		this.setState({
-			string: parseInt(event.target.value, this.state.inputBase).toString(this.state.outputBase)
+			input: event.target.value,
+			result: result
 		});
 	}
 	handleClick = (event) =>{
-
 		if (event.target.name === "InputDropdown"){
-				this.setState({
-					inputBase: event.target.value
-				});
-			} else {
-				this.setState({
-					outputBase: event.target.value
-				});
-			}
+			this.setState({
+				inputBase: event.target.value,
+				result: parseInt(this.state.input, event.target.value).toString(this.state.outputBase),
+			});
+		} else {
+			this.setState({
+				outputBase: event.target.value,
+				result: parseInt(this.state.input, this.state.inputBase).toString(event.target.value),
+			});
+		}
+
 	}
 	render(){
 		return (
@@ -35,12 +44,12 @@ class TextDecode extends React.Component{
 				<h1>ARG Aid</h1>
 				<br></br>
 				<div id="LHSDiv">
-					<textarea onChange={this.handleInput} string={this.state.string}/>
+					<textarea onChange={this.handleInput}/>
 					<br/>
 					Interpret input as: <DropDown name="InputDropdown" value={this.state.inputBase} onChange={this.handleClick}/>
 				</div>
 				<div id="RHSDiv">
-					<textarea disabled value={this.state.string}/>
+					<textarea disabled value={this.state.result}/>
 					<br/>
 					Output as: <DropDown name="OutputDropdown" value={this.state.outputBase} onChange={this.handleClick}/>
 				</div>
