@@ -41,8 +41,6 @@ class TextDecode extends React.Component{
 	render(){
 		return (
 			<div id="Main">
-				<h1>ARG Aid</h1>
-				<br></br>
 				<div id="LHSDiv">
 					<textarea onChange={this.handleInput}/>
 					<br/>
@@ -70,6 +68,4 @@ class DropDown extends React.Component{
 					);
 	}
 }
-
-
-ReactDOM.render(<TextDecode/>, document.getElementById('root'));
+ReactDOM.render(<TextDecode/>, document.getElementById('app'));
