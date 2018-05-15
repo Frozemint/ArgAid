@@ -24,12 +24,12 @@ class TextDecode extends React.Component{
 		if (event.target.name === "InputDropdown"){
 			this.setState({
 				inputBase: event.target.value,
-				result: parseInt(this.state.input.toLowerCase(), event.target.value).toString(this.state.outputBase),
+				result: decodeClass.processString(event.target.value, this.state.outputBase, this.state.input)
 			});
 		} else {
 			this.setState({
 				outputBase: event.target.value,
-				result: parseInt(this.state.input, this.state.inputBase).toString(event.target.value),
+				result: decodeClass.processString(this.state.inputBase, event.target.value, this.state.input,)
 			});
 		}
 
