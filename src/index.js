@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 var decodeClass = require('./decodecore.js');
+var uiClass = require('./ui.js');
 
 class TextDecode extends React.Component{
 	constructor(props){
@@ -26,21 +27,15 @@ class TextDecode extends React.Component{
 				inputBase: event.target.value,
 				result: decodeClass.processString(event.target.value, this.state.outputBase, this.state.input)
 			});
-			if (event.target.value === "String"){
-				var dropDown = document.getElementsByName('OutputDropdown')[0].options;
-				for (var i = 0; i < dropDown.length; i++){
-					if (["32", "64", "String"].indexOf(dropDown[i].value) === -1){
-						dropDown[i].disabled = true;
-					}
-				}
-			}
 		} else {
 			this.setState({
 				outputBase: event.target.value,
 				result: decodeClass.processString(this.state.inputBase, event.target.value, this.state.input)
 			});
 		}
-
+		if (uiClass.updateUI(event.target.value)){
+			this.setState({ outputBase: "32"});
+		}
 
 	}
 	render(){
@@ -78,3 +73,5 @@ class DropDown extends React.Component{
 	}
 }
 ReactDOM.render(<TextDecode/>, document.getElementById('app'));
+
+export default TextDecode;

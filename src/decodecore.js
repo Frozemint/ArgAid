@@ -19,7 +19,6 @@ function processString(inputBase, outputBase, stringToDecode){
 				return "The input is not a valid base 64 number.";
 			}
 		case "String":
-			document.getElementsByName("OutputDropdown").disabled = true;
 			return btoa(stringToDecode);
 		default:
 			return "An unknown error occurred.";
