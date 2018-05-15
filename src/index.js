@@ -27,14 +27,16 @@ class TextDecode extends React.Component{
 				inputBase: event.target.value,
 				result: decodeClass.processString(event.target.value, this.state.outputBase, this.state.input)
 			});
-		} else {
+			if (uiClass.updateUI(event.target.value)){
+				this.setState({ outputBase: "64"});
+			}
+			uiClass.checkForUIWarning(event.target.value, this.state.outputBase);
+		} else if (event.target.name === "OutputDropdown"){
 			this.setState({
 				outputBase: event.target.value,
 				result: decodeClass.processString(this.state.inputBase, event.target.value, this.state.input)
 			});
-		}
-		if (uiClass.updateUI(event.target.value)){
-			this.setState({ outputBase: "32"});
+			uiClass.checkForUIWarning(this.state.inputBase, event.target.value);
 		}
 
 	}
@@ -50,6 +52,7 @@ class TextDecode extends React.Component{
 					<textarea placeholder="Output..." value={this.state.result}/>
 					<br/>
 					Output as: <DropDown name="OutputDropdown" value={this.state.outputBase} onChange={this.handleClick}/>
+					<br/><span id="RHSDivWarn"></span>
 				</div>
 			</div>
 			);

@@ -19,12 +19,18 @@ function processString(inputBase, outputBase, stringToDecode){
 				return "The input is not a valid base 64 number.";
 			}
 		case "String":
-			return btoa(stringToDecode);
+			return stringDecoding(stringToDecode, outputBase);
 		default:
 			return "An unknown error occurred.";
 	}
 }
 
+function stringDecoding(stringToDecode, outputBase){
+	switch (outputBase){
+		case "32":
+			return parseInt(stringToDecode.toLowerCase(), 32);
+		default:
 
-
+	}
+}
 exports.processString = processString;

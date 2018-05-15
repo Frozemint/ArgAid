@@ -16,4 +16,15 @@ function updateUI(selectedMenuItemString){
 
 }
 
-exports.updateUI = updateUI;
+function checkForUIWarning(inputMenuItemString, outputMenuItemString){
+	if (inputMenuItemString === "String" && outputMenuItemString === "32"){
+		document.getElementById('RHSDivWarn').innerHTML = "Converting from string to base 32 is case insensitive!";
+	} else {
+		document.getElementById('RHSDivWarn').innerHTML = "";
+	}
+}
+
+module.exports = {
+	updateUI: updateUI,
+	checkForUIWarning: checkForUIWarning
+}
