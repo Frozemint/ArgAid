@@ -16,7 +16,7 @@ function processString(inputBase, outputBase, stringToDecode){
 			try {
 				return atob(stringToDecode);
 			} catch (e) {
-				return "The input is not a valid base 64 number.";
+				return "The input is not a valid base 64 encoded string.";
 			}
 		case "String":
 			return stringDecoding(stringToDecode, outputBase);
@@ -28,8 +28,15 @@ function processString(inputBase, outputBase, stringToDecode){
 function stringDecoding(stringToDecode, outputBase){
 	switch (outputBase){
 		case "32":
+			var result = parseInt(stringToDecode.toLowerCase(), 32);
+			if (isNaN(result)){
+				return "The input is not a valid base 32 number.";
+			}
 			return parseInt(stringToDecode.toLowerCase(), 32);
+		case "64":
+			return btoa(stringToDecode);
 		default:
+			return stringToDecode;
 
 	}
 }

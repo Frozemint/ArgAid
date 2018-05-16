@@ -27,18 +27,17 @@ class TextDecode extends React.Component{
 				inputBase: event.target.value,
 				result: decodeClass.processString(event.target.value, this.state.outputBase, this.state.input)
 			});
-			if (uiClass.updateUI(event.target.value)){
-				this.setState({ outputBase: "64"});
-			}
-			uiClass.checkForUIWarning(event.target.value, this.state.outputBase);
+			uiClass.updateUI(event.target.value, this.state.outputBase, this.state.outputBase);
 		} else if (event.target.name === "OutputDropdown"){
 			this.setState({
 				outputBase: event.target.value,
 				result: decodeClass.processString(this.state.inputBase, event.target.value, this.state.input)
 			});
-			uiClass.checkForUIWarning(this.state.inputBase, event.target.value);
+			uiClass.updateUI(this.state.inputBase, event.target.value, event.target.value);
 		}
-
+		this.setState({
+			outputBase: uiClass.getNewSelectedItem()
+		});
 	}
 	render(){
 		return (
@@ -76,5 +75,6 @@ class DropDown extends React.Component{
 	}
 }
 ReactDOM.render(<TextDecode/>, document.getElementById('app'));
+
 
 export default TextDecode;
