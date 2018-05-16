@@ -67,7 +67,7 @@ class DropDown extends React.Component{
 						<option value="8">Base 8 (Octary)</option>
 						<option value="10">Base 10 (Decimal)</option>
 						<option value="16">Base 16 (Hexadecimal)</option>
-						<option value="32">Base 32</option>
+						<option value="36">Base 36</option>
 						<option value="64">Base 64</option>
 						<option value="String">String</option>
 					</select>

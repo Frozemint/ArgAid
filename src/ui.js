@@ -12,10 +12,10 @@ function updateUI(inputMenuItemString, outputMenuItemString, selectedItem){
 		case "8":
 		case "10":
 		case "16":
-		case "32":
+		case "36":
 			disabled.push('64'); //disable BASE64 only
 			if (selectedItem === '64'){
-				newSelectedItem = '32';
+				newSelectedItem = '36';
 			}
 			break;
 		case "String":
