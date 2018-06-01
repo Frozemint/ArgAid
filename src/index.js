@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap-theme.css';
 import './index.css';
 var decodeClass = require('./decodecore.js');
 var uiClass = require('./ui.js');
@@ -62,15 +64,15 @@ class TextDecode extends React.Component{
 class DropDown extends React.Component{
 	render(){
 		return (
-			<select name={this.props.name} value={this.props.value} onChange={this.props.onChange}>
-						<option value="2">Base 2 (Binary)</option>
-						<option value="8">Base 8 (Octary)</option>
-						<option value="10">Base 10 (Decimal)</option>
-						<option value="16">Base 16 (Hexadecimal)</option>
-						<option value="36">Base 36</option>
-						<option value="64">Base 64</option>
-						<option value="String">String</option>
-					</select>
+				<select class="custom-select custom-select-lg" name={this.props.name} value={this.props.value} onChange={this.props.onChange}>
+							<option value="2">Base 2 (Binary)</option>
+							<option value="8">Base 8 (Octary)</option>
+							<option value="10">Base 10 (Decimal)</option>
+							<option value="16">Base 16 (Hexadecimal)</option>
+							<option value="36">Base 36</option>
+							<option value="64">Base 64</option>
+							<option value="String">String</option>
+						</select>
 					);
 	}
 }
